@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css }  " />
+</head>
+<body>
+<div class="container-fluid text-center">
+
+    <h1> HOME PAGE </h1>
+
+    <div class="p-2">
+        <a class="h3"  th:href="@{/users}"> Users </a>
+    </div>
+
+    <div class="p-2">
+        <a class="h3" th:href="@{/users/new}"> Create User </a>
+    </div>
+
+    <div class="p-2">
+        <a class="h3" th:href="@{/animals}"> Animals </a>
+    </div>
+
+    <div class="p-2">
+        <a class="h3" th:href="@{/animals/new}"> Create Animal </a>
+    </div>
+
+</div>
+</body>
+</html>
+
+
+
+
