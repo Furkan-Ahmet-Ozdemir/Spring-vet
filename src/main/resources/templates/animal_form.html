@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xml:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>[[${pageTitle}]]</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+<div class="container-fluid text-center">
+    <div>
+        <h2>[[${pageTitle}]]</h2>
+    </div>
+
+    <form th:action="@{/animals/save}" method="post" th:object="${animal}" style="max-width: 500px;margin: 0 auto;">
+        <input type="hidden" th:field="*{id}">
+        <div class="border border-secondary rounded p-3">
+            <div class="form-group raw">
+                <label class="col-sm-4 col-form-label"> Name: </label>
+                <div class="col-sm-8" style="float: right;">
+                    <input class="form-control " type="text" th:field="*{name}" required minlength="2" maxlength="25"/>
+                </div>
+            </div>
+
+            <div class="form-group raw">
+                <label class="col-sm-4 col-form-label"> Kind: </label>
+                <div class="col-sm-8" style="float: right;">
+                    <input class="form-control " type="text" th:field="*{kind}" required minlength="2" maxlength="45"/>
+                </div>
+            </div>
+
+            <div class="form-group raw">
+                <label class="col-sm-4 col-form-label"> Gender: </label>
+                <div class="col-sm-8" style="float: right;">
+                    <input class="form-control " type="text" th:field="*{gender}" required minlength="2" maxlength="45"/>
+                </div>
+            </div>
+
+            <div class="form-group raw">
+                <label class="col-sm-4 col-form-label"> Age: </label>
+                <div class="col-sm-8" style="float: right;">
+                    <input class="form-control " type="number" th:field="*{age}" required minlength="10" maxlength="14"/>
+                </div>
+            </div>
+
+            <div class="form-group raw">
+                <label class="col-sm-4 col-form-label"> Description: </label>
+                <div class="col-sm-8" style="float: right;">
+                    <input class="form-control " type="text" th:field="*{description}" required minlength="5" maxlength="225"/>
+                </div>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary m-2"> Save </button>
+                <button type="button" class="btn btn-secondary m-2" onclick="cancelForm()"> Cancel </button>
+            </div>
+
+
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function cancelForm(){
+        window.location = "[[@{/users}]]";
+    }
+</script>
+</body>
+</html>
+
+
+
+

@@ -7,9 +7,9 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-    <h2> <a href="/users"> Manage Users </a> </h2>
+<!--    <h2> <a href="/users"> Manage Users </a> </h2>-->
     <div>
-        <a class="h3" th:href="@{/users/new}"> Add New User </a>
+        <a class="h3" th:href="@{/animals/new}"> Add New User </a>
     </div>
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
@@ -19,27 +19,29 @@
             <thead class="thead-dark">
             <tr>
                 <th>ID</th>
-                <th>E-mail</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Enabled</th>
+                <th>Name</th>
+                <th>Kind</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Description</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>
             </thead>
             <tbody>
-            <th:block th:each="user : ${listUsers}">
+            <th:block th:each="animal : ${listAnimals}">
                 <tr>
-                    <td>[[${user.id}]]</td>
-                    <td>[[${user.email}]]</td>
-                    <td>[[${user.firstName}]]</td>
-                    <td>[[${user.lastName}]]</td>
-                    <td>[[${user.enabled}]]</td>
+                    <td>[[${animal.id}]]</td>
+                    <td>[[${animal.name}]]</td>
+                    <td>[[${animal.kind}]]</td>
+                    <td>[[${animal.gender}]]</td>
+                    <td>[[${animal.age}]]</td>
+                    <td>[[${animal.description}]]</td>
                     <td>
-                        <a class="h5 btn-primary" th:href="@{'/users/edit/'+${user.id}}">Edit</a>
+                        <a class="h5 btn-primary" th:href="@{'/animals/edit/'+${animal.id}}">Edit</a>
                     </td>
                     <td>
-                        <a class="btn-danger" th:href="@{'/users/delete/'+${user.id}}">Delete</a>
+                        <a class="btn-danger" th:href="@{'/animals/delete/'+${animal.id}}">Delete</a>
                     </td>
                 </tr>
             </th:block>
