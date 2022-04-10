@@ -3,7 +3,7 @@ package com.vet.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "animals")
+//@Table(name = "animals")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +23,10 @@ public class Animal {
 
     @Column(nullable = false)
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Integer getId() {
         return id;
@@ -71,4 +75,14 @@ public class Animal {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public User getUser(){
+        return  user;
+    }
+
+    public void setUser(User user){
+        this.user = user;
+
+    }
+
 }

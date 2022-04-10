@@ -2,7 +2,7 @@
 <html lang="en" xml:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Animals</title>
     <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
 </head>
 <body>
@@ -11,9 +11,7 @@
     <div>
         <a class="h3" th:href="@{/animals/new}"> Add New User </a>
     </div>
-    <div th:if="${message}" class="alert alert-success text-center">
-        [[${message}]]
-    </div>
+
     <div>
         <table class="table table-bordered">
             <thead class="thead-dark">
@@ -24,6 +22,7 @@
                 <th>Gender</th>
                 <th>Age</th>
                 <th>Description</th>
+                <th>Owner</th>
                 <th>Update</th>
                 <th>Delete</th>
             </tr>

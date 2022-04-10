@@ -12,7 +12,7 @@
     </div>
 
     <form th:action="@{/animals/save}" method="post" th:object="${animal}" style="max-width: 500px;margin: 0 auto;">
-        <input type="hidden" th:field="*{id}">
+<!--        <input type="hidden" th:field="*{id}">-->
         <div class="border border-secondary rounded p-3">
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Name: </label>
@@ -48,6 +48,23 @@
                     <input class="form-control " type="text" th:field="*{description}" required minlength="5" maxlength="225"/>
                 </div>
             </div>
+
+            <div class="form-group raw">
+                <label class="col-sm-4 col-form-label"> User: </label>
+                <div class="col-sm-8" style="float: right;">
+                    <select class="form-control" th:field="*{user}" >
+                        <th:block th:each="user : ${listUsers}">
+                            <option th:text="${user.firstName}" th:value="${user.lastName}">
+                            </option>
+                        </th:block>
+                    </select>
+                </div>
+            </div>
+
+
+
+
+
 
             <div class="text-center">
                 <button type="submit" class="btn btn-primary m-2"> Save </button>
