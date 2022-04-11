@@ -3,7 +3,7 @@ package com.vet.model;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +18,10 @@ public class User {
     @Column(length = 14,nullable = false)
     private String phoneNumber;
 
-    @Column(length = 45,nullable = false,name = "first_name")
+    @Column(length = 45,nullable = false)
     private String firstName;
 
-    @Column(length = 45,nullable = false,name = "last_name")
+    @Column(length = 45,nullable = false)
     private String lastName;
 
     public User() {

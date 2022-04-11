@@ -7,9 +7,9 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-<!--    <h2> <a href="/users"> Manage Users </a> </h2>-->
+    <h2> <a href="/"> Index  </a> </h2>
     <div>
-        <a class="h3" th:href="@{/animals/new}"> Add New User </a>
+        <a class="h3" th:href="@{/animals/new}"> Add New Animal </a>
     </div>
 
     <div>
@@ -36,6 +36,8 @@
                     <td>[[${animal.gender}]]</td>
                     <td>[[${animal.age}]]</td>
                     <td>[[${animal.description}]]</td>
+                    <td>[[${animal.user.firstName}]]</td>
+
                     <td>
                         <a class="h5 btn-primary" th:href="@{'/animals/edit/'+${animal.id}}">Edit</a>
                     </td>

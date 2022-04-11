@@ -39,4 +39,16 @@ public class AnimalService {
         repo.deleteById(id);
     }
 
+//    search
+    public List<Animal> getAllAnimals(){
+        List<Animal> list =  (List<Animal>)repo.findAll();
+        return list;
+    }
+
+    public List<Animal> getByKeyword(String keyword){
+        return repo.findByKeyword(keyword);
+    }
+
+
+
 }

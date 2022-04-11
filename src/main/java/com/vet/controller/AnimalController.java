@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
@@ -27,15 +28,8 @@ public class AnimalController {
     public String showAnimalList(Model model){
         List<Animal> listAnimals = animalService.listAll();
         model.addAttribute("listAnimals",listAnimals);
-        return "animals";
+        return "index";
     }
-
-//    @GetMapping("/animals/new")
-//    public String showNewForm(Model model){
-//        model.addAttribute("animal",new Animal());
-//        model.addAttribute("pageTitle","Add New Animal");
-//        return "animal_form";
-//    }
 
     @GetMapping("/animals/new")
     public String showAnimalNewForm(Model model){
@@ -51,7 +45,7 @@ public class AnimalController {
     public String saveAnimal(Animal animal, RedirectAttributes ra){
         animalService.save(animal);
         ra.addFlashAttribute("message","The Animal has been saved succesfuly");
-        return "redirect:/animals";
+        return "index";
     }
 
     @GetMapping("/animals/edit/{id}")
@@ -60,11 +54,13 @@ public class AnimalController {
             Animal animal = animalService.get(id);
             model.addAttribute("animal",animal);
             model.addAttribute("pageTitle","Edit Animal(ID:+"+ id +")");
+            List<User> listUsers = userService.listAll();
+            model.addAttribute("listUsers",listUsers);
 
             return "animal_form";
         } catch (AnimalNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
-            return "redirect:/animals";
+            return "index";
         }
     }
 
@@ -76,8 +72,10 @@ public class AnimalController {
 
         } catch (AnimalNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
+
         }
-        return "redirect:/animals";
+        return "index";
     }
+
 
 }
