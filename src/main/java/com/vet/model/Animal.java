@@ -3,7 +3,7 @@ package com.vet.model;
 import javax.persistence.*;
 
 @Entity
-//@Table(name = "animals")
+@Table(name = "Animals")
 public class Animal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -33,7 +33,7 @@
 <!--    </div>-->
 
     <form th:action="@{/search}" method="get" style="float: left">
-        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name & Shop Type" size="50" >
+        <input type="text" name="keyword" th:value="${keyword}"  placeholder="Find by Owner Name Or Animal Name" size="50" >
         <button type="submit" class="btn btn-info m-2" >Search</button>
         <button type="submit" class="btn btn-info m-2"  >Reset</button>
         <a th:href="@{/users/new}" class="btn btn-primary m-2" >Create User</a>

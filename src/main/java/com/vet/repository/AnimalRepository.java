@@ -10,11 +10,7 @@ import java.util.List;
 public interface AnimalRepository extends JpaRepository<Animal,Integer > {
     public Long countById(Integer id);
 
-    @Query(value = "select * from animal join users  where name like %:keyword% or where users.name like %:keyword%", nativeQuery = true)
+    @Query(value = "select a.* from animals a inner join users u on u.id=a.user_id where a.name like %:keyword% or u.first_name like %:keyword%", nativeQuery = true)
     List<Animal> findByKeyword(@Param("keyword") String keyword);
-
 }
-//    @Query(value = "select * from animal join user a where name like %:keyword% or where user.firstName like %:keyword%", nativeQuery = true)
-//    List<Animal> findByKeyword(@Param("keyword") String keyword);
-//select * from animal join user on(animal.user_id=user.id) where name
-//select * from animal inner join users (animal.user_id=user.id) where animal.name like %:keyword% or users.firstName like %:keyword%
+
