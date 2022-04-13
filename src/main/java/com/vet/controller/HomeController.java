@@ -10,4 +10,9 @@ public class HomeController {
     public String viewHomePage(){
         return "index";
     }
+
+    @GetMapping("index")
+    public String viewHomePage2(){
+        return "index";
+    }
 }

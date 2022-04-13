@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class UserController {
     public String saveUser(User user, RedirectAttributes ra){
         service.save(user);
         ra.addFlashAttribute("message","The User has been saved succesfuly");
-        return "index";
+        return ("redirect:/users");
     }
 
     @GetMapping("/users/edit/{id}")
@@ -49,7 +50,7 @@ public class UserController {
             return "user_form";
         } catch (UserNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
-            return "index";
+            return "redirect:/users";
         }
     }
 

@@ -7,9 +7,9 @@
 </head>
 <body>
 <div class="container-fluid text-center">
-    <h2> <a href="/"> Index </a> </h2>
+    <h2> <a class="btn btn-secondary" href="/"> Index </a> </h2>
     <div>
-        <a class="h3" th:href="@{/users/new}"> Add New User </a>
+        <a class="btn btn-primary" th:href="@{/users/new}"> Add New User </a>
     </div>
     <div th:if="${message}" class="alert alert-success text-center">
         [[${message}]]
@@ -23,7 +23,7 @@
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Phone Number</th>
-                <th>Last Name</th>
+                <th> Password </th>
                 <th>Edit</th>
             </tr>
             </thead>
@@ -35,9 +35,9 @@
                     <td>[[${user.firstName}]]</td>
                     <td>[[${user.lastName}]]</td>
                     <td>[[${user.phoneNumber}]]</td>
-                    <td>[[${user.lastName}]]</td>
+                    <td>[[${user.password}]]</td>
                     <td>
-                        <a class="h5 btn-primary" th:href="@{'/users/edit/'+${user.id}}">Edit</a>
+                        <a class="btn btn-primary" th:href="@{'/users/edit/'+${user.id}}">Edit</a>
                     </td>
                 </tr>
             </th:block>

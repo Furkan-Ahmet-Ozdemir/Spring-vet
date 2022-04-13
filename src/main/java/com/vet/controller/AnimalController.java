@@ -39,17 +39,15 @@ public class AnimalController {
         return "animal_form";
     }
 
-
-
     @PostMapping("/animals/save")
     public String saveAnimal(Animal animal, RedirectAttributes ra){
         animalService.save(animal);
         ra.addFlashAttribute("message","The Animal has been saved succesfuly");
-        return "index";
+        return "redirect:/ ";
     }
 
     @GetMapping("/animals/edit/{id}")
-    public String showEditForm(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
+    public String showEditFormAnimal(@PathVariable("id") Integer id, Model model, RedirectAttributes ra){
         try {
             Animal animal = animalService.get(id);
             model.addAttribute("animal",animal);
@@ -60,7 +58,7 @@ public class AnimalController {
             return "animal_form";
         } catch (AnimalNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
-            return "index";
+            return "redirect:/ ";
         }
     }
 
@@ -72,9 +70,8 @@ public class AnimalController {
 
         } catch (AnimalNotFoundException e) {
             ra.addFlashAttribute("message",e.getMessage());
-
         }
-        return "index";
+        return "redirect:/ ";
     }
 
 
