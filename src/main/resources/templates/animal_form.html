@@ -31,7 +31,7 @@
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Gender: </label>
                 <div class="col-sm-8" style="float: right;">
-                    <input class="form-control " type="text" th:field="*{gender}" required minlength="2" maxlength="45"/>
+                    <input class="form-control " type="text" th:field="*{gender}" placeholder="At most 6 character" required minlength="2" maxlength="45"/>
                 </div>
             </div>
 
@@ -51,8 +51,8 @@
 
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> User: </label>
-                <div class="col-sm-8" style="float: right;">
-                    <select class="form-control" th:field="*{User}" >
+                <div class="col-sm-8" style="float: right;" >
+                    <select class="form-control"  th:field="*{User}" >
                         <th:block th:each="user : ${listUsers}">
                             <option th:text="${user.firstName}" th:value="${user.id}">
                             </option>

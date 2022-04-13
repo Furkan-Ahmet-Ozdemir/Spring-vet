@@ -34,6 +34,8 @@ public class AnimalController {
     @GetMapping("/animals/new")
     public String showAnimalNewForm(Model model){
         List<User> listUsers = userService.listAll();
+        model.addAttribute("pageTitle","Create Animal");
+
         model.addAttribute("listUsers",listUsers);
         model.addAttribute("animal",new Animal());
         return "animal_form";
@@ -51,7 +53,7 @@ public class AnimalController {
         try {
             Animal animal = animalService.get(id);
             model.addAttribute("animal",animal);
-            model.addAttribute("pageTitle","Edit Animal(ID:+"+ id +")");
+            model.addAttribute("pageTitle","Edit Animal");
             List<User> listUsers = userService.listAll();
             model.addAttribute("listUsers",listUsers);
 

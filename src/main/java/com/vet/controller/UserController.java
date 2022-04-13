@@ -45,7 +45,7 @@ public class UserController {
         try {
             User user = service.get(id);
             model.addAttribute("user",user);
-            model.addAttribute("pageTitle","Edit User(ID:+"+ id +")");
+            model.addAttribute("pageTitle","Edit User ");
 
             return "user_form";
         } catch (UserNotFoundException e) {
