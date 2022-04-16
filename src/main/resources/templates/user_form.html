@@ -17,21 +17,21 @@
                 <div class="form-group raw">
                     <label class="col-sm-4 col-form-label"> E-mail: </label>
                     <div class="col-sm-8" style="float: right;">
-                        <input class="form-control " type="email" th:field="*{email}" required minlength="8" maxlength="45"/>
+                        <input class="form-control " type="email" th:field="*{email}" placeholder="example@example.com" required minlength="8" maxlength="45"/>
                     </div>
                 </div>
 
                 <div class="form-group raw">
                     <label class="col-sm-4 col-form-label"> First Name: </label>
                     <div class="col-sm-8" style="float: right;">
-                        <input class="form-control " type="text" th:field="*{firstName}" required minlength="2" maxlength="45"/>
+                        <input class="form-control " type="text" th:field="*{firstName}" placeholder="Ex: Mehmet" required minlength="2" maxlength="45"/>
                     </div>
                 </div>
 
                 <div class="form-group raw">
                     <label class="col-sm-4 col-form-label"> Last Name: </label>
                     <div class="col-sm-8" style="float: right;">
-                        <input class="form-control " type="text" th:field="*{lastName}" required minlength="2" maxlength="45"/>
+                        <input class="form-control " type="text" th:field="*{lastName}" placeholder="Ex: Kara" required minlength="2" maxlength="45"/>
                     </div>
                 </div>
 
@@ -39,14 +39,14 @@
                 <div class="form-group raw">
                     <label class="col-sm-4 col-form-label"> Phone Number: </label>
                     <div class="col-sm-8" style="float: right;">
-                        <input class="form-control " type="number" th:field="*{phoneNumber}" required minlength="10" maxlength="14"/>
+                        <input class="form-control " type="tel" th:field="*{phoneNumber}" placeholder="05555555555" pattern="[0-9]{4}[0-9]{3}[0-9]{2}[0-9]{2}" required minlength="11" maxlength="14"/>
                     </div>
                 </div>
 
                 <div class="form-group raw">
                     <label class="col-sm-4 col-form-label"> Password: </label>
                     <div class="col-sm-8" style="float: right;">
-                        <input class="form-control " type="password" th:field="*{password}" required minlength="2" maxlength="45"/>
+                        <input class="form-control " type="password" th:field="*{password}" required minlength="2" maxlength="15"/>
                     </div>
                 </div>
 

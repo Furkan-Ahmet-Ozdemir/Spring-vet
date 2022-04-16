@@ -17,35 +17,35 @@
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Name: </label>
                 <div class="col-sm-8" style="float: right;">
-                    <input class="form-control " type="text" th:field="*{name}" required minlength="2" maxlength="25"/>
+                    <input class="form-control " type="text" th:field="*{name}" placeholder="Ex: Pamuk" required minlength="2" maxlength="25"/>
                 </div>
             </div>
 
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Kind: </label>
                 <div class="col-sm-8" style="float: right;">
-                    <input class="form-control " type="text" th:field="*{kind}" required minlength="2" maxlength="45"/>
+                    <input class="form-control " type="text" th:field="*{kind}" placeholder="Ex: Dog" required minlength="2" maxlength="25"/>
                 </div>
             </div>
 
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Gender: </label>
                 <div class="col-sm-8" style="float: right;">
-                    <input class="form-control " type="text" th:field="*{gender}" placeholder="At most 6 character" required minlength="2" maxlength="45"/>
+                    <input class="form-control " type="text" th:field="*{gender}" placeholder="Ex: Male" required minlength="2" maxlength="6"/>
                 </div>
             </div>
 
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Age: </label>
                 <div class="col-sm-8" style="float: right;">
-                    <input class="form-control " type="number" th:field="*{age}" required minlength="10" maxlength="14"/>
+                    <input class="form-control " type="number" th:field="*{age}" placeholder="Ex:1" required minlength="1" maxlength="3"/>
                 </div>
             </div>
 
             <div class="form-group raw">
                 <label class="col-sm-4 col-form-label"> Description: </label>
                 <div class="col-sm-8" style="float: right;">
-                    <input class="form-control " type="text" th:field="*{description}" required minlength="5" maxlength="225"/>
+                    <input class="form-control " type="text" th:field="*{description}" placeholder="Ex: Strong" required minlength="5" maxlength="225"/>
                 </div>
             </div>
 
