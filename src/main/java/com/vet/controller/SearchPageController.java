@@ -15,8 +15,9 @@ public class SearchPageController {
     @Autowired
     private AnimalService animalService;
 
+    // Arama kelimesini alıyorum ve kontrol yapıyorum . Boş ise bütün Animal ları getiriyorum .Dolu ise alaklı verileri .
     @RequestMapping(path = {"/","/search"})
-    public String home(Animal shop, Model model, String keyword) {
+    public String search(Animal animal, Model model, String keyword) {
         if(keyword!=null) {
             List<Animal> list = animalService.getByKeyword(keyword);
             model.addAttribute("list", list);
@@ -25,7 +26,5 @@ public class SearchPageController {
             model.addAttribute("list", list);}
         return "index";
     }
-
-
 
 }

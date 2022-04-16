@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -19,6 +18,7 @@ public class UserController {
     @Autowired
     private UserService service;
 
+    // User ları listeliyorum .
     @GetMapping("/users")
     public String showUserList(Model model){
         List<User> listUsers = service.listAll();
@@ -26,6 +26,7 @@ public class UserController {
         return "users";
     }
 
+    // User formu gönderiyorum .
     @GetMapping("/users/new")
     public String showNewForm(Model model){
         model.addAttribute("user",new User());
@@ -33,6 +34,7 @@ public class UserController {
         return "user_form";
     }
 
+    //  POST metodu ile User ı kayıt ediyorum.
     @PostMapping("/users/save")
     public String saveUser(User user, RedirectAttributes ra){
         service.save(user);
@@ -40,6 +42,7 @@ public class UserController {
         return ("redirect:/users");
     }
 
+    // User Id si ile forma kayıtlı bilgileri gösteriyorum .
     @GetMapping("/users/edit/{id}")
     public String showEditForm(@PathVariable("id") Integer id,Model model, RedirectAttributes ra){
         try {
@@ -54,6 +57,7 @@ public class UserController {
         }
     }
 
+    // User Id si ile silme işlmei yapıyorum
 //    @GetMapping("/users/delete/{id}")
 //    public String deleteUser(@PathVariable("id") Integer id,RedirectAttributes ra){
 //        try {

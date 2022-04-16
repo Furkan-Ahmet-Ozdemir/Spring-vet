@@ -28,6 +28,20 @@ public class Animal {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Animal() {
+
+    }
+
+    public Animal(Integer id, String name, String kind, String gender, Integer age, String description, User user) {
+        this.id = id;
+        this.name = name;
+        this.kind = kind;
+        this.gender = gender;
+        this.age = age;
+        this.description = description;
+        this.user = user;
+    }
+
     public Integer getId() {
         return id;
     }
