@@ -54,7 +54,7 @@
                 <div class="col-sm-8" style="float: right;" >
                     <select class="form-control"  th:field="*{User}" >
                         <th:block th:each="user : ${listUsers}">
-                            <option th:text="${user.firstName}" th:value="${user.id}">
+                            <option th:text="${user.firstName}" required th:value="${user.id}">
                             </option>
                         </th:block>
                     </select>

@@ -22,7 +22,8 @@
     <table class="table table-bordered table-sm mt-2">
         <thead>
         <tr>
-            <th> Id </th>
+            <th> Number </th>
+            <th> ID </th>
             <th> Name </th>
             <th> Kind </th>
             <th> Age </th>
@@ -35,6 +36,7 @@
         <tbody>
         <tr th:each="l : ${list}" th:field="${l}">
             <td th:text="${lStat.index+1}"></td>
+            <td th:text="${l.id}"></td>
             <td th:text="${l.name}"></td>
             <td th:text="${l.kind}"></td>
             <td th:text="${l.age}"></td>
@@ -42,10 +44,10 @@
             <td th:text="${l.user.firstName}"></td>
 
             <td>
-                <a th:href="@{'/animals/edit/'+${l.id}}"  class="btn btn-primary " >Edit</a>
+                <a th:href="@{'/animals/edit/'+${l.id}}"  class="btn btn-primary" > Edit </a>
             </td>
             <td>
-                <a th:href="@{'/animals/delete/'+${l.id}}" class="btn btn-danger " > Delete</a>
+                <a th:href="@{'/animals/delete/'+${l.id}}" class="btn btn-danger" > Delete </a>
             </td>
         </tr>
         </tbody>
