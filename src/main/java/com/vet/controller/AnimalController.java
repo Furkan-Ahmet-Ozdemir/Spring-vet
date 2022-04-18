@@ -72,18 +72,18 @@ public class AnimalController {
         }
     }
 
-    // Animal Id si ile silme işlmei yapıyorum
-//    @GetMapping("/animals/delete/{id}")
-//    public String deleteAnimal(@PathVariable("id") Integer id,RedirectAttributes ra) throws AnimalNotFoundException {
-//        try {
-//            animalService.delete(id);
-//            ra.addFlashAttribute("message","The Animal ID "+id+" has been deleted.");
-//
-//        } catch (AnimalNotFoundException e) {
-//            ra.addFlashAttribute("message",e.getMessage());
-//        }
-//        return "index";
-//    }
+//     Animal Id si ile silme işlmei yapıyorum
+    @GetMapping("/animals/delete/{id}")
+    public String deleteAnimal(@PathVariable("id") Integer id,RedirectAttributes ra) throws AnimalNotFoundException {
+        try {
+            animalService.delete(id);
+            ra.addFlashAttribute("message","The Animal ID "+id+" has been deleted.");
+
+        } catch (AnimalNotFoundException e) {
+            ra.addFlashAttribute("message",e.getMessage());
+        }
+        return "index";
+    }
 
 
 }
