@@ -1,86 +1,74 @@
-pipeline {
-    agent any
-    
-    environment {
-        DOCKER_IMAGE = 'willtreatyy/basic-spring-boot-docker'
-        DOCKER_TAG = "${BUILD_NUMBER}"
-        KUBECONFIG_CREDENTIAL_ID = 'kubeconfig'
-        DOCKER_CREDENTIAL_ID = 'docker-hub-credentials'
-    }
-    
-    stages {
-        stage('Checkout') {
-            steps {
-                // GitHub'dan kod çekme (otomatik olarak yapılır)
-                echo 'Kod başarıyla çekildi'
-            }
-        }
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-vet-deployment
+  namespace: spring-vet-app
+  labels:
+    app: spring-vet
+    version: v1
+spec:
+  replicas: 2
+  
+  selector:
+    matchLabels:
+      app: spring-vet
+  
+  strategy:
+    type: RollingUpdate  
+    rollingUpdate:
+      maxUnavailable: 1  
+      maxSurge: 1       
+  
+  template:
+    metadata:
+      labels:
+        app: spring-vet
+        version: v1
+    spec:
+      containers:
+      - name: spring-vet-container
+        image: willtreatyy/basic-spring-boot-docker:latest
         
-        stage('Test') {
-            steps {
-                // Maven ile testleri çalıştırma
-                sh './mvnw clean test'
-            }
-            post {
-                always {
-                    // Test sonuçlarını Jenkins'e kaydetme
-                    publishTestResults testResultsPattern: 'target/surefire-reports/*.xml'
-                }
-            }
-        }
+        ports:
+        - containerPort: 8080
+          name: http
+          protocol: TCP
         
-        stage('Build JAR') {
-            steps {
-                // Uygulamayı build etme
-                sh './mvnw clean package -DskipTests'
-            }
-        }
+        envFrom:
+        - configMapRef:
+            name: spring-vet-config
         
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    // Docker image'ını build etme
-                    docker.build("${DOCKER_IMAGE}:${DOCKER_TAG}")
-                    docker.build("${DOCKER_IMAGE}:latest")
-                }
-            }
-        }
+        resources:
+          requests:  
+            memory: "256Mi"  
+            cpu: "250m"      
+          limits:    
+            memory: "512Mi"  
+            cpu: "500m"    
         
-        stage('Push Docker Image') {
-            steps {
-                script {
-                    // Docker Hub'a image push etme
-                    docker.withRegistry('https://registry.hub.docker.com', DOCKER_CREDENTIAL_ID) {
-                        docker.image("${DOCKER_IMAGE}:${DOCKER_TAG}").push()
-                        docker.image("${DOCKER_IMAGE}:latest").push()
-                    }
-                }
-            }
-        }
+
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 60  # İlk kontrolü 60 saniye sonra yap
+          periodSeconds: 30        # Her 30 saniyede bir kontrol et
+          timeoutSeconds: 5        # 5 saniye timeout
+          failureThreshold: 3      # 3 kez başarısız olursa container'ı yeniden başlat
         
-        stage('Deploy to Kubernetes') {
-            steps {
-                // Kubernetes'e deploy etme
-                withCredentials([kubeconfigFile(credentialsId: KUBECONFIG_CREDENTIAL_ID, variable: 'KUBECONFIG')]) {
-                    sh """
-                        sed -i 's|IMAGE_TAG|${DOCKER_TAG}|g' k8s/deployment.yaml
-                        kubectl apply -f k8s/
-                    """
-                }
-            }
-        }
-    }
-    
-    post {
-        always {
-            // Build sonrası temizlik
-            sh 'docker system prune -f'
-        }
-        success {
-            echo 'Pipeline başarıyla tamamlandı!'
-        }
-        failure {
-            echo 'Pipeline başarısız oldu!'
-        }
-    }
-}
+        # Readiness Probe - Container'ın trafiği kabul etmeye hazır olup olmadığını kontrol eder
+        # Bu check başarısız olursa, Kubernetes bu Pod'a trafik göndermez
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30  # İlk kontrolü 30 saniye sonra yap
+          periodSeconds: 10        # Her 10 saniyede bir kontrol et
+          timeoutSeconds: 3        # 3 saniye timeout
+          failureThreshold: 3      # 3 kez başarısız olursa trafiği bu Pod'a göndermeyi durdur
+        
+        # Security context - güvenlik ayarları
+        securityContext:
+          runAsNonRoot: true       # Root olmayan kullanıcı ile çalıştır
+          runAsUser: 1000         # User ID
+          allowPrivilegeEscalation: false  # Privilege escalation'a izin verme
